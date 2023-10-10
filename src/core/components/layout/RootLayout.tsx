@@ -19,11 +19,10 @@ const RootLayout = () => {
 export default RootLayout;
 
 const MainContent = styled.main`
-  min-height: calc(100% - ${getVar('mobileHeaderHeight')} - ${getVar('footerMobileHeight')});
+  min-height: calc(100% - ${getVar('headerHeight')} - ${getVar('footerHeight')});
   padding: ${getVar('mobilePadding')};
 
   @media (min-width: 580px) {
-    min-height: calc(100% - ${getVar('headerHeight')} - ${getVar('footerHeight')});
     padding: ${getVar('mainPadding')};
   }
 `;
