@@ -1,0 +1,91 @@
+@use './core/theme/ui-variables/ui-variables.scss';
+
+// Custom selection
+::selection {
+  background: hsla(
+                  var(--primary-hue),
+                  calc(var(--primary-saturation) * 1%),
+                  calc(var(--primary-luminosity) * 1%),
+                  1
+  );
+  color: hsla(
+                  var(--primaryContrast-hue),
+                  calc(var(--primaryContrast-saturation) * 1%),
+                  calc(var(--primaryContrast-luminosity) * 1%),
+                  1
+  );
+}
+
+// Custom scrollbar for -webkit- browsers
+::-webkit-scrollbar {
+  width: 0.8rem;
+  height: 0.8rem;
+
+  &-track {
+    background: hsla(
+                    var(--scrollbar-hue),
+                    calc(var(--scrollbar-saturation) * 1%),
+                    calc(var(--scrollbar-luminosity) * 1%),
+                    1
+    );
+  }
+
+  &-thumb {
+    border-radius: 8px;
+    background: hsla(
+                    var(--scrollbarThumb-hue),
+                    calc(var(--scrollbarThumb-saturation) * 1%),
+                    calc(var(--scrollbarThumb-luminosity) * 1%),
+                    1
+    );
+  }
+}
+
+// Custom scrollbar for Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsla(
+                  var(--scrollbar-hue),
+                  calc(var(--scrollbar-saturation) * 1%),
+                  calc(var(--scrollbar-luminosity) * 1%),
+                  1
+  )
+  hsla(
+                  var(--scrollbar-hue),
+                  calc(var(--scrollbar-saturation) * 1%),
+                  calc(var(--scrollbar-luminosity) * 1%),
+                  0
+  );
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow-y: auto;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: #8ab4f8;
+  text-decoration: none;
+
+  &:hover {
+    color: #adcafa;
+  }
+}
