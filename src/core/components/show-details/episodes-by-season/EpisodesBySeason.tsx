@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { applicationRepository } from '../../../../data/application-repository';
 import { queryClient } from '../../../../util/react-query';
@@ -61,7 +61,7 @@ const EpisodesBySeason = () => {
           className="seasons-toggle"
           value={selectedSeason}
           exclusive
-          onChange={(event: MouseEvent<HTMLElement>, newSeason: Season) =>
+          onChange={(_, newSeason: Season) =>
             setSelectedSeason(newSeason)
           }
         >
