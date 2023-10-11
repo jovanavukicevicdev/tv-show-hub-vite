@@ -45,7 +45,7 @@ const FindShows = () => {
 
   const handleSubmit = () => {
     if (enteredString) {
-      setSearchTerm(enteredString);
+      setSearchTerm(enteredString.trim());
     }
   };
 

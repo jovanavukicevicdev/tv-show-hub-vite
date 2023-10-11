@@ -22,7 +22,7 @@ const SearchShows = ({
   return (
     <TextField
       value={enteredString}
-      onChange={(e) => setEnteredString(e.target.value.trim())}
+      onChange={(e) => setEnteredString(e.target.value)}
       className="search-input"
       variant="standard"
       placeholder="Search TV shows"
