@@ -28,7 +28,7 @@ const ScrollButton = () => {
   return (
     <>
       {visible ? (
-        <Scroll color="primary" disableRipple onClick={scrollToTop}>
+        <Scroll color="primary" onClick={scrollToTop}>
           <ExpandLessIcon />
         </Scroll>
       ) : null}

@@ -1,0 +1,17 @@
+{
+  "noMatches": "Keine Treffer",
+  "loading": "Wird geladen...",
+  "poweredBy": "Angetrieben von",
+  "notFoundMessage": "Leider können wir diese Seite nicht finden.",
+  "goToHomepage": "Gehe zu Startseite",
+  "errorOccurred": "Ein Fehler ist aufgetreten",
+  "fetchingShowsError": "TV-Sendungen konnten nicht abgerufen werden. Bitte versuchen Sie es später noch einmal.",
+  "fetchingShowDetailsError": "Showdetails konnten nicht abgerufen werden. Bitte versuchen Sie es später noch einmal.",
+  "searchShows": "Suchen Sie nach Fernsehsendungen",
+  "back": "Zurück",
+  "rating": "Bewertung",
+  "stars": "Sterne",
+  "seasons": "Jahreszeiten",
+  "episodeList": "Episodenliste",
+  "episodePoster": "Episodenplakat"
+}

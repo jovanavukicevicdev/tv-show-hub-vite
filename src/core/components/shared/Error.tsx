@@ -3,6 +3,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { getVar } from '../../theme/ui-variables/ui-variables.ts';
+import { useTranslation } from 'react-i18next';
 
 interface ErrorProps {
   message: string;
@@ -10,6 +11,8 @@ interface ErrorProps {
 }
 
 const Error = ({ message, showCTA }: ErrorProps) => {
+  const { t } = useTranslation();
+
   let props: AlertProps = { severity: 'error', className: 'error-alert' };
 
   if (showCTA) {
@@ -26,8 +29,8 @@ const Error = ({ message, showCTA }: ErrorProps) => {
   return (
     <PageContainer>
       <Alert {...props}>
-        <AlertTitle>An Error Occurred</AlertTitle>
-        {message}
+        <AlertTitle>{t('errorOccurred')}</AlertTitle>
+        {t(message)}
       </Alert>
     </PageContainer>
   );

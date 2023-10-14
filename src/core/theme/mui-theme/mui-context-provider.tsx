@@ -77,6 +77,11 @@ export const ColorModeContextProvider = ({ children }: ColorModeContextProviderP
           },
         },
       },
+      MuiButtonBase: {
+        defaultProps: {
+          disableRipple: true,
+        },
+      },
       MuiButton: {
         defaultProps: {
           size: 'small',
@@ -116,9 +121,9 @@ export const ColorModeContextProvider = ({ children }: ColorModeContextProviderP
           root: {
             '&.error-alert': {
               borderRadius: '6px',
-              backgroundColor: '#303134',
+              backgroundColor: mode === 'dark' ? '#303134' : '#eee',
               '& .MuiAlert-message': {
-                color: '#bdc1c6',
+                color: mode === 'dark' ? '#bdc1c6' : getColor('backgroundContrast'),
                 letterSpacing: '0.05em',
                 '& .MuiAlertTitle-root': {
                   letterSpacing: 0,
@@ -131,7 +136,8 @@ export const ColorModeContextProvider = ({ children }: ColorModeContextProviderP
                   backgroundColor: 'transparent',
                   borderRadius: '4px',
                   '&:hover': {
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backgroundColor:
+                      mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
                     color: getColor('text'),
                   },
                 },

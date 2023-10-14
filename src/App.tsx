@@ -35,9 +35,7 @@ const router = createBrowserRouter([
       {
         path: 'shows/:id',
         element: <ShowDetails />,
-        errorElement: (
-          <Error message="Failed to fetch show details. Please try again later." showCTA={true} />
-        ),
+        errorElement: <Error message="fetchingShowDetailsError" showCTA={true} />,
         loader: showDetailsLoader,
       },
       {

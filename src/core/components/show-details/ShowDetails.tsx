@@ -7,9 +7,12 @@ import Chip from '@mui/material/Chip';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { ShowDetailsStyles } from './ShowDetails.styles';
 import { PathParams } from '../../../util/app-util';
+import { useTranslation } from 'react-i18next';
 
 const ShowDetails = () => {
   const { id } = useParams() as PathParams;
+
+  const { t } = useTranslation();
 
   const { data: show } = useQuery({
     queryKey: ['tv-shows', id, 'cast-embedded'],
@@ -26,7 +29,7 @@ const ShowDetails = () => {
       <ShowDetailsStyles.BackToSearch>
         <ShowDetailsStyles.BackToSearchLink to="..">
           <NavigateBeforeIcon />
-          <span>Back</span>
+          <span>{t('back')}</span>
         </ShowDetailsStyles.BackToSearchLink>
       </ShowDetailsStyles.BackToSearch>
 
@@ -42,7 +45,7 @@ const ShowDetails = () => {
         </ShowDetailsStyles.NameAndYear>
         {show?.show?.averageRating ? (
           <ShowDetailsStyles.StarAndRating>
-            <ShowDetailsStyles.Rating>Rating</ShowDetailsStyles.Rating>
+            <ShowDetailsStyles.Rating>{t('rating')}</ShowDetailsStyles.Rating>
             <ShowDetailsStyles.AverageRating>
               <StarRoundedIcon />
               <ShowDetailsStyles.AverageRatingValue>
@@ -79,7 +82,7 @@ const ShowDetails = () => {
 
         {show?.cast?.length ? (
           <ShowDetailsStyles.ShowCast>
-            <ShowDetailsStyles.Label>Stars</ShowDetailsStyles.Label>
+            <ShowDetailsStyles.Label>{t('stars')}</ShowDetailsStyles.Label>
             <ShowDetailsStyles.HorizontalList>
               {show.cast.map((member, index) => {
                 return (
@@ -95,7 +98,7 @@ const ShowDetails = () => {
 
         {seasons?.length ? (
           <ShowDetailsStyles.ShowSeasons>
-            <ShowDetailsStyles.Label>Seasons</ShowDetailsStyles.Label>
+            <ShowDetailsStyles.Label>{t('seasons')}</ShowDetailsStyles.Label>
             <ShowDetailsStyles.HorizontalList>
               {seasons.map((season, index) => {
                 return (

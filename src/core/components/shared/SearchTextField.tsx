@@ -7,6 +7,7 @@ import styled from '@emotion/styled';
 import { KeyboardEvent } from 'react';
 import { styled as muiStyled } from '@mui/material/styles';
 import { getColor } from '../../theme/colors/colors.ts';
+import { useTranslation } from 'react-i18next';
 
 interface SearchTextFieldProps {
   enteredString: string;
@@ -21,12 +22,14 @@ const SearchTextField = ({
   handleKeyDown,
   handleSubmit,
 }: SearchTextFieldProps) => {
+  const { t } = useTranslation();
+
   return (
     <Search
       value={enteredString}
       onChange={(e) => setEnteredString(e.target.value)}
       variant="standard"
-      placeholder="Search TV shows"
+      placeholder={t('searchShows')}
       InputProps={{
         onKeyDown: (e) => handleKeyDown(e),
         endAdornment: (
@@ -34,11 +37,7 @@ const SearchTextField = ({
             {enteredString !== '' ? (
               <>
                 <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setEnteredString('')}
-                    className="clear-search-button"
-                    disableRipple
-                  >
+                  <IconButton onClick={() => setEnteredString('')} className="clear-search-button">
                     <ClearIcon />
                   </IconButton>
                 </InputAdornment>
@@ -49,7 +48,6 @@ const SearchTextField = ({
               <IconButton
                 onClick={handleSubmit}
                 className="search-button"
-                disableRipple
                 disabled={enteredString === ''}
               >
                 <SearchIcon />

@@ -3,15 +3,18 @@ import styled from '@emotion/styled';
 import { getColor } from '../../theme/colors/colors';
 import Header from './Header.tsx';
 import { getVar } from '../../theme/ui-variables/ui-variables.ts';
+import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Header />
       <MainContent>
         <StyledHeading>404</StyledHeading>
-        <StyledMessage>Sorry, we can't find that page.</StyledMessage>
-        <BackButton to="/shows">Go to Homepage</BackButton>
+        <StyledMessage>{t('notFoundMessage')}</StyledMessage>
+        <BackButton to="/shows">{t('goToHomepage')}</BackButton>
       </MainContent>
     </>
   );

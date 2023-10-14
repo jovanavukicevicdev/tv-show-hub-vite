@@ -1,0 +1,17 @@
+{
+  "noMatches": "No matches",
+  "loading": "Loading...",
+  "poweredBy": "Powered by",
+  "notFoundMessage": "Sorry, we can't find that page.",
+  "goToHomepage": "Go to Homepage",
+  "errorOccurred": "An Error Occurred",
+  "fetchingShowsError": "Failed to fetch tv shows. Please try again later.",
+  "fetchingShowDetailsError": "Failed to fetch show details. Please try again later.",
+  "searchShows": "Search TV shows",
+  "back": "Back",
+  "rating": "Rating",
+  "stars": "Stars",
+  "seasons": "Seasons",
+  "episodeList": "Episode list",
+  "episodePoster": "Episode poster"
+}

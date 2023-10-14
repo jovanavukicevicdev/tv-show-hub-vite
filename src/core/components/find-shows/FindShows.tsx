@@ -8,10 +8,13 @@ import Progress from '../shared/Progress';
 import SearchTextField from '../shared/SearchTextField.tsx';
 import Error from '../shared/Error';
 import { getVar } from '../../theme/ui-variables/ui-variables.ts';
+import { useTranslation } from 'react-i18next';
 
 const FindShows = () => {
   const [enteredString, setEnteredString] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const { t } = useTranslation();
 
   // queryKey is used internally by react query to cache the data
   // queryFn needs a function that returns a promise
@@ -29,13 +32,13 @@ const FindShows = () => {
     content = (
       <>
         <Progress />
-        <TextWrapper>Loading...</TextWrapper>
+        <TextWrapper>{t('loading')}</TextWrapper>
       </>
     );
   }
 
   if (isError) {
-    content = <Error message="Failed to fetch tv shows. Please try again later." showCTA={false} />;
+    content = <Error message="fetchingShowsError" showCTA={false} />;
   }
 
   if (data?.length) {

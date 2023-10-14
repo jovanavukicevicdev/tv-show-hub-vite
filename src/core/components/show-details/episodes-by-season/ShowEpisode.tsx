@@ -3,17 +3,23 @@ import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import styled from '@emotion/styled';
 import { getColor } from '../../../theme/colors/colors';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
+import { useTranslation } from 'react-i18next';
 
 interface ShowEpisodeProps {
   episode: Episode;
   season: number | null;
 }
 
+const EN = 'en-US';
+const DE = 'de-DE';
+
 const ShowEpisode = ({ episode, season }: ShowEpisodeProps) => {
+  const { i18n, t } = useTranslation();
+
   return (
     <EpisodeWrapper>
       {episode?.image ? (
-        <Poster src={episode.image} alt="episode poster" />
+        <Poster src={episode.image} alt={t('episodePoster')} />
       ) : (
         <NoImage>
           <TvOffOutlinedIcon />
@@ -29,7 +35,7 @@ const ShowEpisode = ({ episode, season }: ShowEpisodeProps) => {
           </EpisodeName>
           <AirDate>
             {episode?.airdate
-              ? new Date(episode.airdate).toLocaleDateString('en-US', {
+              ? new Date(episode.airdate).toLocaleDateString(i18n.language === 'en' ? EN : DE, {
                   weekday: 'short',
                   year: 'numeric',
                   month: 'short',

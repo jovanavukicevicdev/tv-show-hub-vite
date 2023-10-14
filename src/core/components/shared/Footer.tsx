@@ -8,10 +8,13 @@ import { getColor } from '../../theme/colors/colors.ts';
 import TvMazeLogo from '../../../assets/images/tvm_api.png';
 import Box from '@mui/material/Box';
 import { styled as muiStyled } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 
 const TV_MAZE_API_URL = 'https://www.tvmaze.com/api';
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <StyledFooter role="footer">
       <ContentWrapper>
@@ -27,7 +30,7 @@ const Footer = () => {
         </CopyrightAndFollowUs>
 
         <PoweredByWrapper>
-          <PoweredBy>Powered by</PoweredBy>
+          <PoweredBy>{t('poweredBy')}</PoweredBy>
 
           <StyledLink href={TV_MAZE_API_URL} target="_blank" rel="noopener norefferer">
             <StyledTvMazeLogo src={TvMazeLogo} alt="TVmaze API logo" />

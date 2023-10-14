@@ -14,6 +14,7 @@ import { getColor } from '../../../theme/colors/colors.ts';
 import { getVar } from '../../../theme/ui-variables/ui-variables.ts';
 import Box from '@mui/material/Box';
 import { styled as muiStyled } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 
 const EpisodesBySeason = () => {
   const { id } = useParams() as PathParams;
@@ -22,6 +23,8 @@ const EpisodesBySeason = () => {
   const seasonNumber = searchParams.get('season');
 
   const [selectedSeason, setSelectedSeason] = useState<Season | null>(null);
+
+  const { t } = useTranslation();
 
   const { data } = useQuery({
     queryKey: ['tv-shows', id, 'seasons-embedded'],
@@ -40,7 +43,7 @@ const EpisodesBySeason = () => {
       <BackToSearchWrapper>
         <BackToSearchLink to=".." relative="path">
           <NavigateBeforeIcon />
-          <span>Back</span>
+          <span>{t('back')}</span>
         </BackToSearchLink>
       </BackToSearchWrapper>
 
@@ -54,12 +57,12 @@ const EpisodesBySeason = () => {
         )}
         <TextWrapper>
           <ShowName>{data?.show?.name}</ShowName>
-          <Title>Episode list</Title>
+          <Title>{t('episodeList')}</Title>
         </TextWrapper>
       </PosterWrapper>
 
       <SeasonsBox>
-        <SeasonsLabel>Seasons</SeasonsLabel>
+        <SeasonsLabel>{t('seasons')}</SeasonsLabel>
         <ToggleButtonGroup
           className="seasons-toggle"
           value={selectedSeason}

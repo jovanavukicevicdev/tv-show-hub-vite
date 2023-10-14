@@ -5,9 +5,41 @@ import { getVar } from '../../theme/ui-variables/ui-variables';
 import { Link } from 'react-router-dom';
 import { useColorMode } from '../../theme/mui-theme/mui-context.ts';
 import Switch from '@mui/material/Switch';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+import { useState, MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
+import MenuIcon from '@mui/icons-material/Menu';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
+type Lang = 'en' | 'de';
 
 const Header = () => {
   const { toggleColorMode, mode } = useColorMode();
+
+  const { i18n } = useTranslation();
+
+  const [language, setLanguage] = useState<Lang>('en');
+
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenuClick = (event: MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLanguageChange = (_: MouseEvent<HTMLElement>, newLang: Lang) => {
+    if (newLang) {
+      setLanguage(newLang);
+      i18n.changeLanguage(newLang);
+    }
+  };
 
   const handleThemeChange = () => {
     toggleColorMode();
@@ -21,9 +53,43 @@ const Header = () => {
           <Logo>TVShowHub</Logo>
         </Link>
 
-        <ThemeSwitch>
+        <LanguageAndThemeSwitch>
           <ThemeSwitchButton onChange={handleThemeChange} checked={mode === 'dark'} />
-        </ThemeSwitch>
+
+          <LanguageToggleButtonGroup
+            color="primary"
+            value={language}
+            exclusive
+            onChange={handleLanguageChange}
+            aria-label="Language"
+            size="small"
+          >
+            <ToggleButton value="en">EN</ToggleButton>
+            <ToggleButton value="de">DE</ToggleButton>
+          </LanguageToggleButtonGroup>
+        </LanguageAndThemeSwitch>
+
+        <MenuIconButton color="primary" onClick={handleMenuClick}>
+          <MenuIcon />
+        </MenuIconButton>
+        <StyledMenu open={open} anchorEl={anchorEl} onClose={handleMenuClose}>
+          <MenuItem>
+            <ThemeSwitchButton onChange={handleThemeChange} checked={mode === 'dark'} />
+          </MenuItem>
+          <MenuItem>
+            <LanguageToggleButtonGroup
+              color="primary"
+              value={language}
+              exclusive
+              onChange={handleLanguageChange}
+              aria-label="Language"
+              size="small"
+            >
+              <ToggleButton value="en">EN</ToggleButton>
+              <ToggleButton value="de">DE</ToggleButton>
+            </LanguageToggleButtonGroup>
+          </MenuItem>
+        </StyledMenu>
       </ContentWrapper>
     </StyledHeader>
   );
@@ -65,7 +131,52 @@ const Logo = styled.div`
   text-align: center;
 `;
 
-const ThemeSwitch = styled.div``;
+const MenuIconButton = styled(IconButton)`
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+
+  @media (min-width: 600px) {
+    display: none;
+  }
+`;
+
+const StyledMenu = styled(Menu)`
+  & .MuiPaper-root {
+    background-color: ${getColor('background')};
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(23, 23, 23, 0.24);
+  }
+
+  & .MuiMenuItem-root:hover {
+    background-color: transparent;
+  }
+`;
+
+const LanguageAndThemeSwitch = styled.div`
+  display: none;
+
+  @media (min-width: 600px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+`;
+
+const LanguageToggleButtonGroup = styled(ToggleButtonGroup)`
+  & .MuiToggleButton-root {
+    border-radius: 20px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    &:first-of-type {
+      padding: 6px 10px 6px 14px;
+    }
+    &:last-of-type {
+      padding: 6px 14px 6px 10px;
+    }
+  }
+`;
 
 const ThemeSwitchButton = muiStyled(Switch)(({ theme }) => ({
   width: 62,
@@ -77,7 +188,7 @@ const ThemeSwitchButton = muiStyled(Switch)(({ theme }) => ({
     transform: 'translateX(6px)',
     '&.Mui-checked': {
       color: '#fff',
-      transform: 'translateX(22px)',
+      transform: 'translateX(23px)',
       '& .MuiSwitch-thumb:before': {
         backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
           '#fff'
