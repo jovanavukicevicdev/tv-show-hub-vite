@@ -18,7 +18,7 @@ const Header = () => {
     <StyledHeader>
       <ContentWrapper>
         <Link to="/shows">
-          <Logo>TVShowsHub</Logo>
+          <Logo>TVShowHub</Logo>
         </Link>
 
         <ThemeSwitch>
