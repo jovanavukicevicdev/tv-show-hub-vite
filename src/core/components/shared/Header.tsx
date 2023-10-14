@@ -54,10 +54,12 @@ const ContentWrapper = styled.div`
 
 const Logo = styled.div`
   color: ${getColor('primary')};
+  background: -webkit-linear-gradient(0deg, #669df6 0%, #3c948b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 30px;
-  letter-spacing: -3px;
   line-height: 1;
-  font-weight: bold;
+  font-weight: 900;
   user-select: none;
   text-align: center;
 `;
