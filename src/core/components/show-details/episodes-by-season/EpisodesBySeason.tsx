@@ -6,11 +6,14 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { applicationRepository } from '../../../../data/application-repository';
-import { queryClient } from '../../../../util/react-query';
 import { Season } from '../../../../data/season';
 import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import EpisodeList from './EpisodeList';
 import { PathParams } from '../../../../util/app-util';
+import { getColor } from '../../../theme/colors/colors.ts';
+import { getVar } from '../../../theme/ui-variables/ui-variables.ts';
+import Box from '@mui/material/Box';
+import { styled as muiStyled } from '@mui/material/styles';
 
 const EpisodesBySeason = () => {
   const { id } = useParams() as PathParams;
@@ -55,15 +58,13 @@ const EpisodesBySeason = () => {
         </TextWrapper>
       </PosterWrapper>
 
-      <SeasonsWrapper>
+      <SeasonsBox>
         <SeasonsLabel>Seasons</SeasonsLabel>
         <ToggleButtonGroup
           className="seasons-toggle"
           value={selectedSeason}
           exclusive
-          onChange={(_, newSeason: Season) =>
-            setSelectedSeason(newSeason)
-          }
+          onChange={(_, newSeason: Season) => setSelectedSeason(newSeason)}
         >
           {data?.seasons?.length
             ? data.seasons.map((season: Season) => {
@@ -79,7 +80,7 @@ const EpisodesBySeason = () => {
               })
             : null}
         </ToggleButtonGroup>
-      </SeasonsWrapper>
+      </SeasonsBox>
 
       <EpisodeList season={selectedSeason} />
     </PageContainer>
@@ -88,18 +89,9 @@ const EpisodesBySeason = () => {
 
 export default EpisodesBySeason;
 
-export function loader({ params }: any) {
-  // We trigger the query programmatically
-  return queryClient.fetchQuery({
-    queryKey: ['tv-shows', params.id, 'seasons-embedded'],
-    queryFn: ({ signal }) =>
-      applicationRepository.getShowByIdWithSeasons({ signal, id: params.id }),
-  });
-}
-
 const PageContainer = styled.div`
   width: 100%;
-  max-width: 900px;
+  max-width: ${getVar('contentMaxWidth')};
   margin: 0 auto;
 `;
 
@@ -125,7 +117,7 @@ const PosterWrapper = styled.div`
 
 const Poster = styled.img`
   width: 90px;
-  border: 1px solid #333;
+  border: 1px solid ${getColor('posterBorder')};
 `;
 
 const NoImage = styled.div`
@@ -134,10 +126,10 @@ const NoImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #3a3a3a;
+  border: 1px solid ${getColor('posterBorder')};
 
   & svg {
-    fill: #3a3a3a;
+    fill: ${getColor('posterBorder')};
     font-size: 24px;
   }
 `;
@@ -148,7 +140,7 @@ const TextWrapper = styled.div`
 
 const ShowName = styled.div`
   font-weight: 600;
-  color: #9aa0a6;
+  color: ${getColor('textSecondary')};
   margin-bottom: -6px;
   font-size: 18px;
   letter-spacing: 0.02em;
@@ -159,17 +151,18 @@ const Title = styled.div`
   margin-bottom: -5px;
 `;
 
-const SeasonsWrapper = styled.div`
-  margin: 16px 0 12px;
-  padding: 8px;
-  background-color: rgba(255, 255, 255, 0.08);
-`;
+const SeasonsBox = muiStyled(Box)(({ theme }) => ({
+  margin: '16px 0 12px',
+  padding: '8px',
+  backgroundColor:
+    theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.05)',
+}));
 
 const SeasonsLabel = styled.label`
   display: block;
   font-size: 14px;
   letter-spacing: 0.03em;
   font-weight: 600;
-  color: #9aa0a6;
+  color: ${getColor('textSecondary')};
   margin-bottom: 4px;
 `;

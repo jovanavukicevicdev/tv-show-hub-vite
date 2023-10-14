@@ -4,19 +4,35 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import RedditIcon from '@mui/icons-material/Reddit';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { getColor } from '../../theme/colors/colors.ts';
+import TvMazeLogo from '../../../assets/images/tvm_api.png';
+import Box from '@mui/material/Box';
+import { styled as muiStyled } from '@mui/material/styles';
+
+const TV_MAZE_API_URL = 'https://www.tvmaze.com/api';
 
 const Footer = () => {
   return (
-    <StyledFooter>
+    <StyledFooter role="footer">
       <ContentWrapper>
-        <StyledText>© TvShowHub</StyledText>
+        <CopyrightAndFollowUs>
+          <FollowUs>
+            <FacebookIcon className="facebook" />
+            <InstagramIcon className="instagram" />
+            <TwitterIcon className="twitter" />
+            <RedditIcon className="reddit" />
+          </FollowUs>
 
-        <FollowUs>
-          <FacebookIcon className="facebook" />
-          <InstagramIcon className="instagram" />
-          <TwitterIcon className="twitter" />
-          <RedditIcon className="reddit" />
-        </FollowUs>
+          <Copyright>© TvShowHub</Copyright>
+        </CopyrightAndFollowUs>
+
+        <PoweredByWrapper>
+          <PoweredBy>Powered by</PoweredBy>
+
+          <StyledLink href={TV_MAZE_API_URL} target="_blank" rel="noopener norefferer">
+            <StyledTvMazeLogo src={TvMazeLogo} alt="TVmaze API logo" />
+          </StyledLink>
+        </PoweredByWrapper>
       </ContentWrapper>
     </StyledFooter>
   );
@@ -24,36 +40,41 @@ const Footer = () => {
 
 export default Footer;
 
-const StyledFooter = styled.footer`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: ${getVar('footerHeight')};
-  padding: 20px 16px;
+const StyledFooter = muiStyled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  height: getVar('footerHeight'),
+  padding: '20px 16px',
+  color: theme.palette.mode === 'dark' ? getColor('textSecondary') : getColor('backgroundContrast'),
 
-  @media (min-width: 580px) {
-    padding: 20px 48px;
-  }
-`;
+  '@media (min-width: 600px)': {
+    padding: '20px 48px',
+  },
+}));
 
 const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  max-width: 900px;
+  align-items: center;
+  max-width: ${getVar('contentMaxWidth')};
   width: 100%;
-  gap: 10px;
-  border-top: 1px solid #333;
+  border-top: 1px solid ${getColor('posterBorder')};
   padding-top: 20px;
+`;
+
+const CopyrightAndFollowUs = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 `;
 
 const FollowUs = styled.div`
   display: flex;
   align-items: center;
-  color: #9aa0a6;
-  gap: 2px;
+  padding-top: 2px;
 
   svg {
     font-size: 1.5rem;
@@ -80,8 +101,27 @@ const FollowUs = styled.div`
   }
 `;
 
-const StyledText = styled.div`
+const Copyright = styled.div`
   font-size: 13px;
-  color: #9aa0a6;
+  letter-spacing: 0.04em;
+`;
+
+const PoweredByWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 2px;
+`;
+
+const StyledLink = styled.a`
+  height: 30px;
+`;
+
+const StyledTvMazeLogo = styled.img`
+  height: 30px;
+`;
+
+const PoweredBy = styled.div`
+  font-size: 13px;
   letter-spacing: 0.04em;
 `;

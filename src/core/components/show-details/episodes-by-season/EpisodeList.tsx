@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { useQuery } from '@tanstack/react-query';
 import { applicationRepository } from '../../../../data/application-repository';
 import { Season } from '../../../../data/season';
+import { getColor } from '../../../theme/colors/colors.ts';
 
 interface EpisodeListProps {
   season: Season | null;
@@ -36,6 +37,6 @@ const EpisodesSection = styled.section`
   gap: 8px;
 
   & article:not(:first-of-type) {
-    border-top: 1px solid #333;
+    border-top: 1px solid ${getColor('posterBorder')};
   }
 `;

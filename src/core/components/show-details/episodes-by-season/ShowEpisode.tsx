@@ -70,7 +70,7 @@ const EpisodeWrapper = styled.article`
 
 const Poster = styled.img`
   width: 200px;
-  border: 1px solid #333;
+  border: 1px solid ${getColor('posterBorder')};
 `;
 
 const NoImage = styled.div`
@@ -79,10 +79,10 @@ const NoImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #3a3a3a;
+  border: 1px solid ${getColor('posterBorder')};
 
   & svg {
-    fill: #3a3a3a;
+    fill: ${getColor('posterBorder')};
     font-size: 32px;
   }
 `;
@@ -117,7 +117,7 @@ const EpisodeName = styled.div`
 
 const AirDate = styled.div`
   font-size: 13px;
-  color: #9aa0a6;
+  color: ${getColor('textSecondary')};
   letter-spacing: 0.03em;
 `;
 
@@ -150,7 +150,7 @@ const AverageRatingValue = styled.div`
 
 const StyledSpan = styled.span`
   font-size: 14px;
-  color: #9aa0a6;
+  color: ${getColor('textSecondary')};
 `;
 
 const SeasonAndEpisode = styled.div`

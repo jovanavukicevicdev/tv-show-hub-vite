@@ -5,8 +5,9 @@ import { applicationRepository } from '../../../data/application-repository';
 import styled from '@emotion/styled';
 import { getColor } from '../../theme/colors/colors';
 import Progress from '../shared/Progress';
-import SearchShows from '../shared/SearchShows';
+import SearchTextField from '../shared/SearchTextField.tsx';
 import Error from '../shared/Error';
+import { getVar } from '../../theme/ui-variables/ui-variables.ts';
 
 const FindShows = () => {
   const [enteredString, setEnteredString] = useState<string>('');
@@ -61,7 +62,7 @@ const FindShows = () => {
 
   return (
     <PageContainer>
-      <SearchShows
+      <SearchTextField
         enteredString={enteredString}
         setEnteredString={setEnteredString}
         handleKeyDown={handleKeyDown}
@@ -77,11 +78,11 @@ export default FindShows;
 
 const PageContainer = styled.div`
   width: 100%;
-  max-width: 900px;
+  max-width: ${getVar('contentMaxWidth')};
   margin: 0 auto;
 `;
 
 const TextWrapper = styled.div`
   padding: 48px 16px 24px;
-  color: ${getColor('textSecondary')};
+  color: ${getColor('text')};
 `;

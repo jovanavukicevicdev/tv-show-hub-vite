@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { applicationRepository } from '../../../data/application-repository';
-import { queryClient } from '../../../util/react-query';
 import { useQuery } from '@tanstack/react-query';
 import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
@@ -118,11 +117,3 @@ const ShowDetails = () => {
 };
 
 export default ShowDetails;
-
-export function loader({ params }: any) {
-  // We trigger the query programmatically
-  return queryClient.fetchQuery({
-    queryKey: ['tv-shows', params.id, 'cast-embedded'],
-    queryFn: ({ signal }) => applicationRepository.getShowByIdWithCast({ signal, id: params.id }),
-  });
-}

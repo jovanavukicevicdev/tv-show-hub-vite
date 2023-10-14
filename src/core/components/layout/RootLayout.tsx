@@ -22,7 +22,7 @@ const MainContent = styled.main`
   min-height: calc(100% - ${getVar('headerHeight')} - ${getVar('footerHeight')});
   padding: ${getVar('mobilePadding')};
 
-  @media (min-width: 580px) {
-    padding: ${getVar('mainPadding')};
+  @media (min-width: 600px) {
+    padding: ${getVar('desktopPadding')};
   }
 `;

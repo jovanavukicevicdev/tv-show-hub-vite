@@ -2,21 +2,18 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './util/react-query';
 import FindShows from './core/components/find-shows/FindShows';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import ShowDetails, {
-  loader as showDetailsLoader,
-} from './core/components/show-details/ShowDetails';
+import ShowDetails from './core/components/show-details/ShowDetails';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
-import { muiTheme } from './core/theme/mui-theme/mui-theme';
-import { useEffect } from 'react';
-import { setThemeColor } from './core/theme/colors/colors';
 import NotFound from './core/components/shared/NotFound';
 import RootLayout from './core/components/layout/RootLayout.tsx';
 import Error from './core/components/shared/Error';
-import EpisodesBySeason, {
-  loader as episodesBySeasonLoader,
-} from './core/components/show-details/episodes-by-season/EpisodesBySeason';
+import EpisodesBySeason from './core/components/show-details/episodes-by-season/EpisodesBySeason';
 import ScrollButton from './core/components/shared/ScrollButton';
+import { ColorModeContextProvider } from './core/theme/mui-theme/mui-context-provider.tsx';
+import { useEffect } from 'react';
+import { setThemeColor } from './core/theme/colors/colors.ts';
+import { episodesBySeasonLoader } from './core/components/show-details/episodes-by-season/episodes-by-season-loader.ts';
+import { showDetailsLoader } from './core/components/show-details/show-details-loader.ts';
 
 const router = createBrowserRouter([
   {
@@ -54,11 +51,11 @@ const router = createBrowserRouter([
 
 function App() {
   useEffect(() => {
-    setThemeColor();
+    setThemeColor('dark');
   }, []);
 
   return (
-    <ThemeProvider theme={muiTheme}>
+    <ColorModeContextProvider>
       <QueryClientProvider client={queryClient}>
         <>
           <CssBaseline />
@@ -66,7 +63,7 @@ function App() {
           <ScrollButton />
         </>
       </QueryClientProvider>
-    </ThemeProvider>
+    </ColorModeContextProvider>
   );
 }
 

@@ -4,6 +4,8 @@ import Chip from '@mui/material/Chip';
 import { Show } from '../../../data/show';
 import styled from '@emotion/styled';
 import Tooltip from '@mui/material/Tooltip';
+import { getColor } from '../../theme/colors/colors.ts';
+import { styled as muiStyled } from '@mui/material/styles';
 
 interface ListItemParams {
   show: Show;
@@ -30,26 +32,26 @@ const ListItem = ({ show }: ListItemParams) => {
         <ShowInfo>
           <NameAndImdbWrapper>
             <Tooltip title="See details" placement="top">
-              <Link to={`${show.id}`}>{show.name}</Link>
+              <Name to={`${show.id}`}>{show.name}</Name>
             </Tooltip>
             {show.imdbUrl ? (
               <LinkWrapper>
                 <LinkDivider />
-                <a
+                <ExternalLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={`${IMDB_BASE_URL}/${show.imdbUrl}`}
+                  to={`${IMDB_BASE_URL}/${show.imdbUrl}`}
                 >
                   IMDb
-                </a>
+                </ExternalLink>
               </LinkWrapper>
             ) : null}
             {show.tvMazeUrl ? (
               <LinkWrapper>
                 <LinkDivider />
-                <a target="_blank" rel="noopener noreferrer" href={show.tvMazeUrl}>
+                <ExternalLink target="_blank" rel="noopener noreferrer" to={show.tvMazeUrl}>
                   TVmaze
-                </a>
+                </ExternalLink>
               </LinkWrapper>
             ) : null}
           </NameAndImdbWrapper>
@@ -77,7 +79,7 @@ export default ListItem;
 const ShowCard = styled.div`
   display: block;
 
-  @media (min-width: 580px) {
+  @media (min-width: 600px) {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -94,25 +96,25 @@ const NoImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #3a3a3a;
+  border: 1px solid ${getColor('posterBorder')};
   border-radius: 6px;
 
   & svg {
-    fill: #3a3a3a;
+    fill: ${getColor('posterBorder')};
     font-size: 48px;
   }
 `;
 
 const StyledImage = styled.img`
   width: 178px;
-  border: 1px solid #3a3a3a;
+  border: 1px solid ${getColor('posterBorder')};
   border-radius: 6px;
 `;
 
 const ShowInfo = styled.div`
   padding: 0 0 16px 0;
 
-  @media (min-width: 580px) {
+  @media (min-width: 600px) {
     padding: 8px 16px;
   }
 `;
@@ -122,6 +124,14 @@ const NameAndImdbWrapper = styled.div`
   align-items: center;
   flex-wrap: wrap;
 `;
+
+const Name = muiStyled(Link)(({ theme }) => ({
+  color: theme.palette.mode === 'dark' ? getColor('primary') : '#2473f2',
+
+  '&:hover': {
+    color: theme.palette.mode === 'dark' ? '#8ab4f8' : getColor('primary'),
+  },
+}));
 
 const LinkWrapper = styled.div`
   font-size: 12px;
@@ -134,8 +144,16 @@ const LinkDivider = styled.div`
   width: 2px;
   margin-inline: 8px;
   border-radius: 1px;
-  background-color: #9aa0a6;
+  background-color: ${getColor('textSecondary')};
 `;
+
+const ExternalLink = muiStyled(Link)(({ theme }) => ({
+  color: theme.palette.mode === 'dark' ? getColor('primary') : '#2473f2',
+
+  '&:hover': {
+    color: theme.palette.mode === 'dark' ? '#8ab4f8' : getColor('primary'),
+  },
+}));
 
 const GenresWrapper = styled.div`
   display: flex;

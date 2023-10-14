@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { getColor } from '../../theme/colors/colors';
+import { getVar } from '../../theme/ui-variables/ui-variables.ts';
 
 const PageContainer = styled.div`
   width: 100%;
-  max-width: 900px;
+  max-width: ${getVar('contentMaxWidth')};
   margin: 0 auto;
 `;
 
@@ -43,7 +44,7 @@ const ShowName = styled.h2`
 
 const Year = styled.div`
   font-size: 14px;
-  color: #9aa0a6;
+  color: ${getColor('textSecondary')};
   font-weight: 600;
   letter-spacing: 0.03em;
 `;
@@ -78,12 +79,12 @@ const Rating = styled.div`
   letter-spacing: 0.17em;
   text-transform: uppercase;
   line-height: 1;
-  color: #9aa0a6;
+  color: ${getColor('textSecondary')};
 `;
 
 const StyledSpan = styled.span`
   font-size: 16px;
-  color: #9aa0a6;
+  color: ${getColor('textSecondary')};
 `;
 
 const PosterWrapper = styled.div`
@@ -92,7 +93,7 @@ const PosterWrapper = styled.div`
 
 const Poster = styled.img`
   width: 280px;
-  border: 1px solid #333;
+  border: 1px solid ${getColor('posterBorder')};
 `;
 
 const NoImage = styled.div`
@@ -101,10 +102,10 @@ const NoImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #3a3a3a;
+  border: 1px solid ${getColor('posterBorder')};
 
   & svg {
-    fill: #3a3a3a;
+    fill: ${getColor('posterBorder')};
     font-size: 48px;
   }
 `;
@@ -122,7 +123,7 @@ const StyledSummary = styled.div`
 
 const ShowCast = styled.div`
   padding-block: 12px;
-  border-block: 1px solid #3a3a3a;
+  border-block: 1px solid ${getColor('posterBorder')};
   display: flex;
   align-items: flex-start;
 `;
@@ -130,14 +131,14 @@ const ShowCast = styled.div`
 const Label = styled.label`
   font-weight: 600;
   margin-right: 12px;
-  color: ${getColor('text')};
+  color: ${getColor('backgroundContrast')};
   letter-spacing: 0.02em;
 `;
 
 const CastMember = styled.span`
   display: flex;
   align-items: center;
-  color: ${getColor('textSecondary')};
+  color: ${getColor('backgroundContrast')};
 `;
 
 const LinkDivider = styled.div`
@@ -145,7 +146,7 @@ const LinkDivider = styled.div`
   width: 2px;
   margin-inline: 8px;
   border-radius: 1px;
-  background-color: #9aa0a6;
+  background-color: ${getColor('textSecondary')};
 `;
 
 const SeasonsDivider = styled.div`

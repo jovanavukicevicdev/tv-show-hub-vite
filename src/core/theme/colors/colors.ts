@@ -1,13 +1,13 @@
 // ******************************************************  TYPE  ****************************************************** //
-import { ColorTheme, darkTheme } from './color-variables';
+import { darkTheme, lightTheme } from './color-variables';
 
 // This helps with autocomplete and typechecking in components
 export type Color = keyof typeof colors;
 
 // Set 'colors' to default theme -- in this case 'darkTheme'
-var colors = darkTheme;
+let colors = darkTheme;
 
-// ******************************************************  COLOR FUNCTIONS  ****************************************************** //
+// ******************************  COLOR FUNCTIONS  ******************************** //
 // Returns 'color' with or without opacity , 'transparent' or 'inherit'
 export function getColor(color: Color, alpha: number = 1) {
   // Get value from 'colors'
@@ -90,35 +90,39 @@ export function getLighterColor(color: Color, howMuchLighter: number, alpha: num
   return `hsla(var(--${color}-hue), calc(var(--${color}-saturation) * 1%), calc((var(--${color}-luminosity) + ${howMuchLighter}) * 1%), ${alpha})`;
 }
 
-// ******************************************************  GENERATE THEME FUNCTIONS  ****************************************************** //
-// Setting app theme based on tenant
-export function setThemeColor(colorTheme?: ColorTheme) {
-  if (colorTheme) {
-    colors = colorTheme;
+// *******************************  THEME FUNCTIONS  *************************************** //
+export function setThemeColor(variation: 'light' | 'dark') {
+  if (variation === 'light') {
+    colors = lightTheme;
+  } else {
+    colors = darkTheme;
   }
+
   for (const [key, value] of Object.entries(colors)) {
-    if (!colors.hasOwnProperty(key)) continue;
+    if (!(key in colors)) continue;
 
     makeCSSVariables(value, key);
   }
 }
 
-export function setDefaultThemeColor() {
-  for (const [key, value] of Object.entries(darkTheme)) {
-    if (!colors.hasOwnProperty(key)) continue;
+export function switchThemeColor() {
+  colors === lightTheme ? (colors = darkTheme) : (colors = lightTheme);
+
+  for (const [key, value] of Object.entries(colors)) {
+    if (!(key in colors)) continue;
 
     makeCSSVariables(value, key);
   }
 }
 
-// Setting color variables for material theme
+// Setting color variables for mui theme
 function makeCSSVariables(color: string, colorName: string) {
   const hsl = hexToHSL(color);
 
   const root = document.documentElement;
 
   // Not necessary for theming to work
-  // Uncomment only if it helps testers know which colors we are using in the app
+  // Helps testers know which colors we are using in the app
   root.style.setProperty(`--${colorName}`, `${color}`);
 
   root.style.setProperty(`--${colorName}-hue`, `${hsl.hue}`);

@@ -1,26 +1,32 @@
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { getColor } from '../../theme/colors/colors';
+import Header from './Header.tsx';
+import { getVar } from '../../theme/ui-variables/ui-variables.ts';
 
 const NotFound = () => {
   return (
-    <PageContainer>
-      <StyledHeading>404</StyledHeading>
-      <StyledMessage>Sorry, we can't find that page.</StyledMessage>
-      <BackButton to="/shows">Go to Homepage</BackButton>
-    </PageContainer>
+    <>
+      <Header />
+      <MainContent>
+        <StyledHeading>404</StyledHeading>
+        <StyledMessage>Sorry, we can't find that page.</StyledMessage>
+        <BackButton to="/shows">Go to Homepage</BackButton>
+      </MainContent>
+    </>
   );
 };
 
 export default NotFound;
 
-const PageContainer = styled.div`
+const MainContent = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: calc(100% - ${getVar('headerHeight')});
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: ${getColor('background')};
 `;
 
 const StyledHeading = styled.h1`
@@ -42,10 +48,4 @@ const BackButton = styled(Link)`
   border-radius: 6px;
   margin-top: 20px;
   font-weight: 600;
-
-  &:hover {
-    border: 1px solid #4185f4;
-    background-color: #4185f4;
-    color: ${getColor('primaryContrast')};
-  }
 `;

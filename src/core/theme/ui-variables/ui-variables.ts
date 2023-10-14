@@ -8,10 +8,11 @@ export function getVar(v: UIVar) {
 
 // ******************************************************  VARIABLES  ****************************************************** //
 const uiVariables = {
-  mainPadding: '--mainPadding',
+  desktopPadding: '--desktopPadding',
   mobilePadding: '--mobilePadding',
   headerHeight: '--headerHeight',
   footerHeight: '--footerHeight',
   borderRadius: '--borderRadius',
   htmlFontSize: '--htmlFontSize',
+  contentMaxWidth: '--contentMaxWidth',
 };
