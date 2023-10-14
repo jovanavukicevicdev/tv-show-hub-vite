@@ -18,7 +18,7 @@ const Header = () => {
     <StyledHeader>
       <ContentWrapper>
         <Link to="/shows">
-          <Logo>TvShowsHub</Logo>
+          <Logo>TVShowsHub</Logo>
         </Link>
 
         <ThemeSwitch>
@@ -59,6 +59,7 @@ const Logo = styled.div`
   -webkit-text-fill-color: transparent;
   font-size: 30px;
   line-height: 1;
+  letter-spacing: -1px;
   font-weight: 900;
   user-select: none;
   text-align: center;
