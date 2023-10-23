@@ -42,8 +42,4 @@ const BreadcrumbsContainer = styled.div`
 
 const StyledBreadcrumbs = styled(MuiBreadcrumbs)`
   font-size: 14px;
-  //
-  //& .MuiBreadcrumbs-li {
-  //  text-transform: capitalize;
-  //}
 `;
