@@ -2,10 +2,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { Breadcrumbs as MuiBreadcrumbs } from '@mui/material';
 import styled from '@emotion/styled';
 import { getVar } from '../../theme/ui-variables/ui-variables.ts';
+import { useTranslation } from 'react-i18next';
 
 const Breadcrumbs = () => {
   const location = useLocation();
   const crumbs = location.pathname.split('/').filter((crumb) => crumb !== '');
+
+  const { t } = useTranslation();
 
   return (
     <BreadcrumbsContainer>
@@ -17,9 +20,9 @@ const Breadcrumbs = () => {
           return (
             <div key={crumb}>
               {crumbs.length === 1 && crumb === 'shows' ? null : last ? (
-                <span>{crumb}</span>
+                <span>{t(crumb)}</span>
               ) : (
-                <Link to={to}>{crumb}</Link>
+                <Link to={to}>{t(crumb)}</Link>
               )}
             </div>
           );
@@ -39,8 +42,8 @@ const BreadcrumbsContainer = styled.div`
 
 const StyledBreadcrumbs = styled(MuiBreadcrumbs)`
   font-size: 14px;
-
-  & .MuiBreadcrumbs-li {
-    text-transform: capitalize;
-  }
+  //
+  //& .MuiBreadcrumbs-li {
+  //  text-transform: capitalize;
+  //}
 `;
