@@ -1,7 +1,5 @@
 import { KeyboardEvent, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import ShowsList from './ShowsList';
-import { applicationRepository } from '../../../data/application-repository';
 import styled from '@emotion/styled';
 import { getColor } from '../../theme/colors/colors';
 import Progress from '../shared/Progress';
@@ -9,6 +7,7 @@ import SearchTextField from '../shared/SearchTextField.tsx';
 import Error from '../shared/Error';
 import { getVar } from '../../theme/ui-variables/ui-variables.ts';
 import { useTranslation } from 'react-i18next';
+import useTvShowsData from '../../hooks/useTvShowsData.ts';
 
 const FindShows = () => {
   const [enteredString, setEnteredString] = useState<string>('');
@@ -16,15 +15,7 @@ const FindShows = () => {
 
   const { t } = useTranslation();
 
-  // queryKey is used internally by react query to cache the data
-  // queryFn needs a function that returns a promise
-  // isPending - is the request still on its way, or did we get a response
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['tv-shows', { search: searchTerm }],
-    // wrap it in an anonymous arrow fn to pass the search term
-    queryFn: ({ signal }) => applicationRepository.getShows({ searchTerm, signal }),
-    enabled: searchTerm !== '',
-  });
+  const { data, isLoading, isError } = useTvShowsData({ searchTerm });
 
   let content;
 

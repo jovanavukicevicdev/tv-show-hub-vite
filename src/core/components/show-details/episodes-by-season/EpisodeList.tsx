@@ -1,20 +1,12 @@
 import { Episode } from '../../../../data/episode';
 import ShowEpisode from './ShowEpisode';
 import styled from '@emotion/styled';
-import { useQuery } from '@tanstack/react-query';
-import { applicationRepository } from '../../../../data/application-repository';
-import { Season } from '../../../../data/season';
 import { getColor } from '../../../theme/colors/colors.ts';
-
-interface EpisodeListProps {
-  season: Season | null;
-}
+import useTvShowSeasonEpisodesData from '../../../hooks/useTvShowSeasonEpisodesData.ts';
+import { EpisodeListProps } from '../../../../util/app-util.ts';
 
 const EpisodeList = ({ season }: EpisodeListProps) => {
-  const { data: episodes } = useQuery({
-    queryKey: ['tv-shows', season, 'season-episodes'],
-    queryFn: ({ signal }) => applicationRepository.getSeasonEpisodes({ signal, id: season!.id }),
-  });
+  const { data: episodes } = useTvShowSeasonEpisodesData({ season });
 
   return (
     <>

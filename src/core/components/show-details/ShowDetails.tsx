@@ -1,6 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { applicationRepository } from '../../../data/application-repository';
-import { useQuery } from '@tanstack/react-query';
 import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import Chip from '@mui/material/Chip';
@@ -8,21 +6,17 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { ShowDetailsStyles } from './ShowDetails.styles';
 import { PathParams } from '../../../util/app-util';
 import { useTranslation } from 'react-i18next';
+import useTvShowWithCastData from '../../hooks/useTvShowWithCastData.ts';
+import useTvShowSeasonsData from '../../hooks/useTvShowSeasonsData.ts';
 
 const ShowDetails = () => {
   const { id } = useParams() as PathParams;
 
   const { t } = useTranslation();
 
-  const { data: show } = useQuery({
-    queryKey: ['tv-shows', id, 'cast-embedded'],
-    queryFn: ({ signal }) => applicationRepository.getShowByIdWithCast({ signal, id: +id }),
-  });
+  const { data: show } = useTvShowWithCastData({ id: +id });
 
-  const { data: seasons } = useQuery({
-    queryKey: ['tv-shows', id, 'seasons'],
-    queryFn: ({ signal }) => applicationRepository.getSeasons({ signal, id: +id }),
-  });
+  const { data: seasons } = useTvShowSeasonsData({ id: +id });
 
   return (
     <ShowDetailsStyles.PageContainer>

@@ -4,8 +4,6 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { applicationRepository } from '../../../../data/application-repository';
 import { Season } from '../../../../data/season';
 import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import EpisodeList from './EpisodeList';
@@ -15,6 +13,7 @@ import { getVar } from '../../../theme/ui-variables/ui-variables.ts';
 import Box from '@mui/material/Box';
 import { styled as muiStyled } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
+import useTvShowWithSeasonsData from '../../../hooks/useTvShowWithSeasonsData.ts';
 
 const EpisodesBySeason = () => {
   const { id } = useParams() as PathParams;
@@ -26,10 +25,7 @@ const EpisodesBySeason = () => {
 
   const { t } = useTranslation();
 
-  const { data } = useQuery({
-    queryKey: ['tv-shows', id, 'seasons-embedded'],
-    queryFn: ({ signal }) => applicationRepository.getShowByIdWithSeasons({ signal, id: +id }),
-  });
+  const { data } = useTvShowWithSeasonsData({ id: +id });
 
   useEffect(() => {
     if (seasonNumber && data?.seasons.length) {
