@@ -6,7 +6,6 @@ import * as deNs from './core/locales/de/translation.json';
 export const defaultNS = 'ns1';
 
 i18next.use(initReactI18next).init({
-  debug: true,
   fallbackLng: 'en',
   defaultNS,
   resources: {

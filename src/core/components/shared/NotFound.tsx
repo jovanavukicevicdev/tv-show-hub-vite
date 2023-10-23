@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { getColor } from '../../theme/colors/colors';
-import Header from './Header.tsx';
-import { getVar } from '../../theme/ui-variables/ui-variables.ts';
+import Header from './Header';
+import { getVar } from '../../theme/ui-variables/ui-variables';
 import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {

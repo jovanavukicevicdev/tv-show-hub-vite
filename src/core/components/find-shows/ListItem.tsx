@@ -3,7 +3,7 @@ import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import Chip from '@mui/material/Chip';
 import { Show } from '../../../data/show';
 import Tooltip from '@mui/material/Tooltip';
-import { ListItemStyles } from './ListItem.styles.ts';
+import { ListItemStyles } from './ListItem.styles';
 
 interface ListItemParams {
   show: Show;

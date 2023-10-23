@@ -1,8 +1,8 @@
-import { ColorModeContext } from './mui-context.ts';
+import { ColorModeContext } from './mui-context';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { getColor, getDarkerColor, getLighterColor } from '../colors/colors';
 import { ReactNode, useMemo, useState } from 'react';
-import { getVar } from '../ui-variables/ui-variables.ts';
+import { getVar } from '../ui-variables/ui-variables';
 
 interface ColorModeContextProviderProps {
   children: ReactNode;

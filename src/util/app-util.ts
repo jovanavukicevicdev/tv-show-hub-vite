@@ -1,4 +1,4 @@
-import { Season } from '../data/season.ts';
+import { Season } from '../data/season';
 
 export type PathParams = {
   id: string;

@@ -3,11 +3,11 @@ import ShowsList from './ShowsList';
 import styled from '@emotion/styled';
 import { getColor } from '../../theme/colors/colors';
 import Progress from '../shared/Progress';
-import SearchTextField from '../shared/SearchTextField.tsx';
+import SearchTextField from '../shared/SearchTextField';
 import Error from '../shared/Error';
-import { getVar } from '../../theme/ui-variables/ui-variables.ts';
+import { getVar } from '../../theme/ui-variables/ui-variables';
 import { useTranslation } from 'react-i18next';
-import useTvShowsData from '../../hooks/useTvShowsData.ts';
+import useTvShowsData from '../../hooks/useTvShowsData';
 
 const FindShows = () => {
   const [enteredString, setEnteredString] = useState<string>('');

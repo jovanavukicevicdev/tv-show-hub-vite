@@ -1,9 +1,9 @@
 import { Episode } from '../../../../data/episode';
 import ShowEpisode from './ShowEpisode';
 import styled from '@emotion/styled';
-import { getColor } from '../../../theme/colors/colors.ts';
-import useTvShowSeasonEpisodesData from '../../../hooks/useTvShowSeasonEpisodesData.ts';
-import { EpisodeListProps } from '../../../../util/app-util.ts';
+import { getColor } from '../../../theme/colors/colors';
+import useTvShowSeasonEpisodesData from '../../../hooks/useTvShowSeasonEpisodesData';
+import { EpisodeListProps } from '../../../../util/app-util';
 
 const EpisodeList = ({ season }: EpisodeListProps) => {
   const { data: episodes } = useTvShowSeasonEpisodesData({ season });

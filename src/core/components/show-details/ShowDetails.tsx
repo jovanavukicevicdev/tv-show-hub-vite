@@ -2,12 +2,11 @@ import { useParams } from 'react-router-dom';
 import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import Chip from '@mui/material/Chip';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { ShowDetailsStyles } from './ShowDetails.styles';
 import { PathParams } from '../../../util/app-util';
 import { useTranslation } from 'react-i18next';
-import useTvShowWithCastData from '../../hooks/useTvShowWithCastData.ts';
-import useTvShowSeasonsData from '../../hooks/useTvShowSeasonsData.ts';
+import useTvShowWithCastData from '../../hooks/useTvShowWithCastData';
+import useTvShowSeasonsData from '../../hooks/useTvShowSeasonsData';
 
 const ShowDetails = () => {
   const { id } = useParams() as PathParams;
@@ -20,13 +19,6 @@ const ShowDetails = () => {
 
   return (
     <ShowDetailsStyles.PageContainer>
-      <ShowDetailsStyles.BackToSearch>
-        <ShowDetailsStyles.BackToSearchLink to="..">
-          <NavigateBeforeIcon />
-          <span>{t('back')}</span>
-        </ShowDetailsStyles.BackToSearchLink>
-      </ShowDetailsStyles.BackToSearch>
-
       <ShowDetailsStyles.PosterHeader>
         <ShowDetailsStyles.NameAndYear>
           <ShowDetailsStyles.ShowName>{show?.show.name}</ShowDetailsStyles.ShowName>

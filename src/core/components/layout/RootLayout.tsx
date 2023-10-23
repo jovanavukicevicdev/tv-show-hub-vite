@@ -3,12 +3,14 @@ import { Outlet } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { getVar } from '../../theme/ui-variables/ui-variables';
 import Footer from '../shared/Footer';
+import Breadcrumbs from '../shared/Breadcrumbs.tsx';
 
 const RootLayout = () => {
   return (
     <>
       <Header />
       <MainContent>
+        <Breadcrumbs />
         <Outlet />
       </MainContent>
       <Footer />

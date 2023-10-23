@@ -2,7 +2,7 @@ import Alert, { AlertProps } from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { getVar } from '../../theme/ui-variables/ui-variables.ts';
+import { getVar } from '../../theme/ui-variables/ui-variables';
 import { useTranslation } from 'react-i18next';
 
 interface ErrorProps {

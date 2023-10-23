@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { applicationRepository } from '../../data/application-repository.ts';
-import { EpisodeListProps } from '../../util/app-util.ts';
+import { applicationRepository } from '../../data/application-repository';
+import { EpisodeListProps } from '../../util/app-util';
 
 const useTvShowSeasonEpisodesData = ({ season }: EpisodeListProps) => {
   return useQuery({

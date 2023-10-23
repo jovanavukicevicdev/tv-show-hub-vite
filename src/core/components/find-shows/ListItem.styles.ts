@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { getColor } from '../../theme/colors/colors.ts';
+import { getColor } from '../../theme/colors/colors';
 import { styled as muiStyled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 

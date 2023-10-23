@@ -8,7 +8,6 @@
   "fetchingShowsError": "Failed to fetch tv shows. Please try again later.",
   "fetchingShowDetailsError": "Failed to fetch show details. Please try again later.",
   "searchShows": "Search TV shows",
-  "back": "Back",
   "rating": "Rating",
   "stars": "Stars",
   "seasons": "Seasons",

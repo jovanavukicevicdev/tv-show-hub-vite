@@ -4,7 +4,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import RedditIcon from '@mui/icons-material/Reddit';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { getColor } from '../../theme/colors/colors.ts';
+import { getColor } from '../../theme/colors/colors';
 import TvMazeLogo from '../../../assets/images/tvm_api.png';
 import Box from '@mui/material/Box';
 import { styled as muiStyled } from '@mui/material/styles';

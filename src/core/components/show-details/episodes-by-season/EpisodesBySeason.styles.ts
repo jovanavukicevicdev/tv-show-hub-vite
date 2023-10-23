@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { getVar } from '../../../theme/ui-variables/ui-variables.ts';
-import { Link } from 'react-router-dom';
-import { getColor } from '../../../theme/colors/colors.ts';
+import { getVar } from '../../../theme/ui-variables/ui-variables';
+import { getColor } from '../../../theme/colors/colors';
 import { styled as muiStyled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
@@ -11,24 +10,10 @@ const PageContainer = styled.div`
   margin: 0 auto;
 `;
 
-const BackToSearchWrapper = styled.div`
-  margin-bottom: 24px;
-`;
-
-const BackToSearchLink = styled(Link)`
-  width: 70px;
-  display: flex;
-  gap: 6px;
-
-  span {
-    letter-spacing: 0.03em;
-    margin-left: -6px;
-  }
-`;
-
 const PosterWrapper = styled.div`
   display: flex;
   align-items: flex-end;
+  margin-top: 24px;
 `;
 
 const Poster = styled.img`
@@ -85,8 +70,6 @@ const SeasonsLabel = styled.label`
 
 export const EpisodesBySeasonStyles = {
   PageContainer,
-  BackToSearchWrapper,
-  BackToSearchLink,
   PosterWrapper,
   Poster,
   NoImage,

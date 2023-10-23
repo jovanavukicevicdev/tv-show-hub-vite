@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { getColor } from '../../theme/colors/colors';
-import { getVar } from '../../theme/ui-variables/ui-variables.ts';
+import { getVar } from '../../theme/ui-variables/ui-variables';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -9,26 +9,11 @@ const PageContainer = styled.div`
   margin: 0 auto;
 `;
 
-const BackToSearch = styled.div`
-  margin-bottom: 24px;
-`;
-
-const BackToSearchLink = styled(Link)`
-  width: 70px;
-  display: flex;
-  gap: 6px;
-
-  span {
-    letter-spacing: 0.03em;
-    margin-left: -6px;
-  }
-`;
-
 const PosterHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin: 24px 0 8px;
 `;
 
 const NameAndYear = styled.div`
@@ -175,8 +160,6 @@ const HorizontalList = styled.div`
 
 export const ShowDetailsStyles = {
   PageContainer,
-  BackToSearch,
-  BackToSearchLink,
   PosterHeader,
   NameAndYear,
   ShowName,

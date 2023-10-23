@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { applicationRepository } from '../../data/application-repository.ts';
+import { applicationRepository } from '../../data/application-repository';
 
 const useTvShowSeasonsData = ({ id }: { id: number }) => {
   return useQuery({

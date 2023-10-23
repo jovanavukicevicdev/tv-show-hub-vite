@@ -3,7 +3,7 @@ import { styled as muiStyled } from '@mui/material/styles';
 import { getColor, switchThemeColor } from '../../theme/colors/colors';
 import { getVar } from '../../theme/ui-variables/ui-variables';
 import { Link } from 'react-router-dom';
-import { useColorMode } from '../../theme/mui-theme/mui-context.ts';
+import { useColorMode } from '../../theme/mui-theme/mui-context';
 import Switch from '@mui/material/Switch';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';

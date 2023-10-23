@@ -1,5 +1,4 @@
 import { useParams, useSearchParams } from 'react-router-dom';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { useEffect, useState } from 'react';
@@ -8,8 +7,8 @@ import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import EpisodeList from './EpisodeList';
 import { PathParams } from '../../../../util/app-util';
 import { useTranslation } from 'react-i18next';
-import useTvShowWithSeasonsData from '../../../hooks/useTvShowWithSeasonsData.ts';
-import { EpisodesBySeasonStyles } from './EpisodesBySeason.styles.ts';
+import useTvShowWithSeasonsData from '../../../hooks/useTvShowWithSeasonsData';
+import { EpisodesBySeasonStyles } from './EpisodesBySeason.styles';
 
 const EpisodesBySeason = () => {
   const { id } = useParams() as PathParams;
@@ -32,13 +31,6 @@ const EpisodesBySeason = () => {
 
   return (
     <EpisodesBySeasonStyles.PageContainer>
-      <EpisodesBySeasonStyles.BackToSearchWrapper>
-        <EpisodesBySeasonStyles.BackToSearchLink to=".." relative="path">
-          <NavigateBeforeIcon />
-          <span>{t('back')}</span>
-        </EpisodesBySeasonStyles.BackToSearchLink>
-      </EpisodesBySeasonStyles.BackToSearchWrapper>
-
       <EpisodesBySeasonStyles.PosterWrapper>
         {data?.show?.image ? (
           <EpisodesBySeasonStyles.Poster src={data.show.image} alt="poster" />

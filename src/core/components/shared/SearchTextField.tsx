@@ -6,7 +6,7 @@ import { TextField } from '@mui/material';
 import styled from '@emotion/styled';
 import { KeyboardEvent } from 'react';
 import { styled as muiStyled } from '@mui/material/styles';
-import { getColor } from '../../theme/colors/colors.ts';
+import { getColor } from '../../theme/colors/colors';
 import { useTranslation } from 'react-i18next';
 
 interface SearchTextFieldProps {

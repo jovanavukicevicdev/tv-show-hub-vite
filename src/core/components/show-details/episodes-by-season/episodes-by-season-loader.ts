@@ -1,5 +1,5 @@
-import { queryClient } from '../../../../util/react-query.ts';
-import { applicationRepository } from '../../../../data/application-repository.ts';
+import { queryClient } from '../../../../util/react-query';
+import { applicationRepository } from '../../../../data/application-repository';
 
 export function episodesBySeasonLoader({ params }: any) {
   // Trigger the query programmatically
