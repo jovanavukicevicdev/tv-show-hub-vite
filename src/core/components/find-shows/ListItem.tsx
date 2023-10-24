@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import Chip from '@mui/material/Chip';
 import { Show } from '../../../data/show';
@@ -12,12 +12,15 @@ interface ListItemParams {
 const IMDB_BASE_URL = 'https://www.imdb.com/title';
 
 const ListItem = ({ show }: ListItemParams) => {
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('search');
+
   return (
     <li>
       <ListItemStyles.ShowCard>
         <ListItemStyles.ImageWrapper>
           {show.image ? (
-            <Link to={`${show.id}`}>
+            <Link to={`${show.id}?search=${search}`}>
               <ListItemStyles.StyledImage src={show.image} alt={show.name} />
             </Link>
           ) : (
@@ -30,7 +33,9 @@ const ListItem = ({ show }: ListItemParams) => {
         <ListItemStyles.ShowInfo>
           <ListItemStyles.NameAndImdbWrapper>
             <Tooltip title="See details" placement="top">
-              <ListItemStyles.Name to={`${show.id}`}>{show.name}</ListItemStyles.Name>
+              <ListItemStyles.Name to={`${show.id}?search=${search}`}>
+                {show.name}
+              </ListItemStyles.Name>
             </Tooltip>
             {show.imdbUrl ? (
               <ListItemStyles.LinkWrapper>
