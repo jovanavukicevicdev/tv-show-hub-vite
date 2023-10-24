@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { Breadcrumbs as MuiBreadcrumbs } from '@mui/material';
 import styled from '@emotion/styled';
 import { getVar } from '../../theme/ui-variables/ui-variables.ts';
@@ -6,6 +6,9 @@ import { useTranslation } from 'react-i18next';
 
 const Breadcrumbs = () => {
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('search');
+
   const crumbs = location.pathname.split('/').filter((crumb) => crumb !== '');
 
   const { t } = useTranslation();
@@ -15,7 +18,10 @@ const Breadcrumbs = () => {
       <StyledBreadcrumbs separator="›">
         {crumbs.map((crumb, index) => {
           const last = index === crumbs.length - 1;
-          const to = `/${crumbs.slice(0, index + 1).join('/')}`;
+          let to = `/${crumbs.slice(0, index + 1).join('/')}`;
+          if (search) {
+            to += `?search=${search}`;
+          }
 
           return (
             <div key={crumb}>

@@ -1,4 +1,4 @@
-import { KeyboardEvent, useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 import ShowsList from './ShowsList';
 import styled from '@emotion/styled';
 import { getColor } from '../../theme/colors/colors';
@@ -8,14 +8,20 @@ import Error from '../shared/Error';
 import { getVar } from '../../theme/ui-variables/ui-variables';
 import { useTranslation } from 'react-i18next';
 import useTvShowsData from '../../hooks/useTvShowsData';
+import { useSearchParams } from 'react-router-dom';
 
 const FindShows = () => {
-  const [enteredString, setEnteredString] = useState<string>('');
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchParam = searchParams.get('search');
+
+  const [enteredString, setEnteredString] = useState<string>(searchParam || '');
+  const [searchTerm, setSearchTerm] = useState<string>(searchParam || '');
 
   const { t } = useTranslation();
 
-  const { data, isLoading, isError } = useTvShowsData({ searchTerm });
+  const { data, isLoading, isError } = useTvShowsData({
+    searchTerm: searchTerm || searchParam || '',
+  });
 
   let content;
 
@@ -40,7 +46,9 @@ const FindShows = () => {
 
   const handleSubmit = () => {
     if (enteredString) {
-      setSearchTerm(enteredString.trim());
+      const trimmed = enteredString.trim();
+      setSearchTerm(trimmed);
+      setSearchParams({ search: trimmed });
     }
   };
 
@@ -51,8 +59,16 @@ const FindShows = () => {
 
     if (e.key.toLowerCase() === 'enter' && value !== '') {
       setSearchTerm(value);
+      setSearchParams({ search: value });
     }
   };
+
+  useEffect(() => {
+    if (!searchParam) {
+      setSearchTerm('');
+      setEnteredString('');
+    }
+  }, [searchParam]);
 
   return (
     <PageContainer>

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import TvOffOutlinedIcon from '@mui/icons-material/TvOffOutlined';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import Chip from '@mui/material/Chip';
@@ -10,6 +10,9 @@ import useTvShowSeasonsData from '../../hooks/useTvShowSeasonsData';
 
 const ShowDetails = () => {
   const { id } = useParams() as PathParams;
+
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get('search');
 
   const { t } = useTranslation();
 
@@ -90,7 +93,7 @@ const ShowDetails = () => {
                 return (
                   <ShowDetailsStyles.StyledSeason
                     key={season.number}
-                    to={`episodes?season=${season.number}`}
+                    to={`episodes?search=${search}&season=${season.number}`}
                   >
                     {season.number}
                     {index !== seasons.length - 1 ? <ShowDetailsStyles.SeasonsDivider /> : null}
